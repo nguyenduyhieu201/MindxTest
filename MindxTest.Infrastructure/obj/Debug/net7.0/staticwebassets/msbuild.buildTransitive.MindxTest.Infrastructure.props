@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\MindxTest.Infrastructure.props" />
+</Project>

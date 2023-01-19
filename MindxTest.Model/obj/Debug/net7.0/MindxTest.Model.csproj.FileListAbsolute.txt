@@ -1,0 +1,15 @@
+D:\MindxTest\MindxTest.Model\bin\Debug\net7.0\MindxTest.Model.exe
+D:\MindxTest\MindxTest.Model\bin\Debug\net7.0\MindxTest.Model.deps.json
+D:\MindxTest\MindxTest.Model\bin\Debug\net7.0\MindxTest.Model.runtimeconfig.json
+D:\MindxTest\MindxTest.Model\bin\Debug\net7.0\MindxTest.Model.dll
+D:\MindxTest\MindxTest.Model\bin\Debug\net7.0\MindxTest.Model.pdb
+D:\MindxTest\MindxTest.Model\obj\Debug\net7.0\MindxTest.Model.csproj.AssemblyReference.cache
+D:\MindxTest\MindxTest.Model\obj\Debug\net7.0\MindxTest.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\MindxTest\MindxTest.Model\obj\Debug\net7.0\MindxTest.Model.AssemblyInfoInputs.cache
+D:\MindxTest\MindxTest.Model\obj\Debug\net7.0\MindxTest.Model.AssemblyInfo.cs
+D:\MindxTest\MindxTest.Model\obj\Debug\net7.0\MindxTest.Model.csproj.CoreCompileInputs.cache
+D:\MindxTest\MindxTest.Model\obj\Debug\net7.0\MindxTest.Model.dll
+D:\MindxTest\MindxTest.Model\obj\Debug\net7.0\refint\MindxTest.Model.dll
+D:\MindxTest\MindxTest.Model\obj\Debug\net7.0\MindxTest.Model.pdb
+D:\MindxTest\MindxTest.Model\obj\Debug\net7.0\MindxTest.Model.genruntimeconfig.cache
+D:\MindxTest\MindxTest.Model\obj\Debug\net7.0\ref\MindxTest.Model.dll
