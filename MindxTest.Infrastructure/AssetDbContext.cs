@@ -1,6 +1,7 @@
 // using MindxTest.Infrastructure.Configuration;
 using MindxTest.Model.Model;
 using Microsoft.EntityFrameworkCore;
+using MindxTest.Infrastructure.Configuration;
 
 namespace MindxTest.Infrastructure.Infrastructure
 {
@@ -23,7 +24,8 @@ namespace MindxTest.Infrastructure.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder buillder)
         {
-            
+            buillder.ApplyConfigurationsFromAssembly(typeof(ResumeConfiguration).Assembly);
+            buillder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
         }
     }
 }
@@ -31,7 +33,7 @@ namespace MindxTest.Infrastructure.Infrastructure
 
 
 // buillder.ApplyConfigurationsFromAssembly(typeof(AssetConfiguration).Assembly);
-            // buillder.ApplyConfigurationsFromAssembly(typeof(AssignmentConfiguration).Assembly);
-            // buillder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
-            // buillder.ApplyConfigurationsFromAssembly(typeof(ReturnForRequestConfiguration).Assembly);
-            // buillder.ApplyConfigurationsFromAssembly(typeof(CategoryConfiguration).Assembly);
+// buillder.ApplyConfigurationsFromAssembly(typeof(AssignmentConfiguration).Assembly);
+// buillder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
+// buillder.ApplyConfigurationsFromAssembly(typeof(ReturnForRequestConfiguration).Assembly);
+// buillder.ApplyConfigurationsFromAssembly(typeof(CategoryConfiguration).Assembly);
