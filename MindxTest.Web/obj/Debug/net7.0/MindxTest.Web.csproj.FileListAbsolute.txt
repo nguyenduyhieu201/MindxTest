@@ -90,3 +90,7 @@ D:\MindxTest\MindxTest.Web\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel
 D:\MindxTest\MindxTest.Web\bin\Debug\net7.0\Mono.TextTemplating.dll
 D:\MindxTest\MindxTest.Web\bin\Debug\net7.0\System.CodeDom.dll
 D:\MindxTest\MindxTest.Web\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\MindxTest\MindxTest.Web\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\MindxTest\MindxTest.Web\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\MindxTest\MindxTest.Web\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\MindxTest\MindxTest.Web\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll

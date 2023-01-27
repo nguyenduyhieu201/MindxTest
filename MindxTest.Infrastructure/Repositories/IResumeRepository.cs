@@ -6,5 +6,6 @@ namespace MindxTest.Infrastructure.Repositories
     public interface IResumeRepository : IRepositoryBase<Resume>
     {
         public IEnumerable<Resume> GetResumesWithId (int userId);
+
     }
 }

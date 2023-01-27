@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace MindxTest.Infrastructure.Infrastructure
@@ -11,19 +6,10 @@ namespace MindxTest.Infrastructure.Infrastructure
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         #region Properties
-        public MindxDbContext _context = null;
+        public MindxDbContext _context;
         public DbSet<T> dbSet = null;
         private IDbFactory DbFactory;
-        protected MindxDbContext Init
-        {
-            get { return _context ?? (_context = DbFactory.Init()); }
-        }
         #endregion
-        public RepositoryBase()
-        {
-            this._context = new MindxDbContext();
-            dbSet = _context.Set<T>();
-        }
         public RepositoryBase(MindxDbContext _context)
         {
             this._context = _context;
@@ -58,3 +44,16 @@ namespace MindxTest.Infrastructure.Infrastructure
         }
     }
 }
+
+
+// public RepositoryBase()
+// {
+//     this._context = new MindxDbContext();
+//     dbSet = _context.Set<T>();
+// }
+
+
+// protected MindxDbContext Init
+// {
+//     get { return _context ?? (_context = DbFactory.Init()); }
+// }

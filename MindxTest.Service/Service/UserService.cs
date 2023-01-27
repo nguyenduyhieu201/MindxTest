@@ -1,5 +1,5 @@
 using MindxTest.Infrastructure.Repositories;
-using MindxTest.Model.Dto;
+using MindxTest.Model.Dto.UserDto;
 using MindxTest.Model.Model;
 using MindxTest.Service.Extension;
 
@@ -12,7 +12,6 @@ namespace MindxTest.Service.Service
         public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-
         }
         public User SignUp(UserSignUpModel userSignUp)
         {
@@ -25,7 +24,7 @@ namespace MindxTest.Service.Service
 
         public IEnumerable<User> GetUsers()
         {
-            return _userRepository.GetAll();
+            return _userRepository.GetUsers();
         }
 
         public User Authenticate(UserLoginModel userLoginModel)

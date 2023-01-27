@@ -14,7 +14,7 @@ namespace MindxTest.Web.Controllers
         private ILogger<UserController> _logger;
         private IUserService _userService;
 
-        public UserController(IConfiguration config, UserService userService, ILogger<UserController> logger)
+        public UserController(IConfiguration config, IUserService userService, ILogger<UserController> logger)
         {
             _config = config;
             _userService = userService;
@@ -22,6 +22,7 @@ namespace MindxTest.Web.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        [HttpGet]
         public IEnumerable<User> GetUsers()
         {
             return _userService.GetUsers();
@@ -39,7 +40,7 @@ namespace MindxTest.Web.Controllers
                 {
                     Username = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,
                     UserRole = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Role)?.Value == "Admin" ?
-                     Model.Enum.UserType.Admin : Model.Enum.UserType.User
+                     Model.Enum.UserType.Admin : Model.Enum.UserType.User,
                 };
             }
             return null;

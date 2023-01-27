@@ -21,40 +21,31 @@ namespace MindxTest.Web.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MindxTest.Model.Model.Education", b =>
+            modelBuilder.Entity("MindxTest.Model.Model.Resume", b =>
                 {
-                    b.Property<int>("EducationId")
+                    b.Property<int>("ResumeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EducationId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ResumeId"));
+
+                    b.Property<string>("Company")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Falcuty")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Github")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Gpa")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("University")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EducationId");
-
-                    b.ToTable("Educations");
-                });
-
-            modelBuilder.Entity("MindxTest.Model.Model.Experience", b =>
-                {
-                    b.Property<int>("ExperienceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExperienceId"));
-
-                    b.Property<string>("Company")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -66,28 +57,7 @@ namespace MindxTest.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Period")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ExperienceId");
-
-                    b.ToTable("Experiences");
-                });
-
-            modelBuilder.Entity("MindxTest.Model.Model.Information", b =>
-                {
-                    b.Property<int>("InformationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InformationId"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Github")
+                    b.Property<string>("Language")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -103,32 +73,19 @@ namespace MindxTest.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("InformationId");
+                    b.Property<string>("Period")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Informations");
-                });
-
-            modelBuilder.Entity("MindxTest.Model.Model.Resume", b =>
-                {
-                    b.Property<int>("ResumeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ResumeId"));
-
-                    b.Property<int>("EducationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExperienceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InformationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SkillId")
-                        .HasColumnType("int");
+                    b.Property<string>("SoftSkill")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Summary")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("University")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -137,42 +94,9 @@ namespace MindxTest.Web.Migrations
 
                     b.HasKey("ResumeId");
 
-                    b.HasIndex("EducationId")
-                        .IsUnique();
-
-                    b.HasIndex("ExperienceId")
-                        .IsUnique();
-
-                    b.HasIndex("InformationId")
-                        .IsUnique();
-
-                    b.HasIndex("SkillId")
-                        .IsUnique();
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Resumes");
-                });
-
-            modelBuilder.Entity("MindxTest.Model.Model.Skill", b =>
-                {
-                    b.Property<int>("SkillId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkillId"));
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SoftSkill")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SkillId");
-
-                    b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("MindxTest.Model.Model.User", b =>
@@ -201,69 +125,13 @@ namespace MindxTest.Web.Migrations
 
             modelBuilder.Entity("MindxTest.Model.Model.Resume", b =>
                 {
-                    b.HasOne("MindxTest.Model.Model.Education", "Education")
-                        .WithOne("Resume")
-                        .HasForeignKey("MindxTest.Model.Model.Resume", "EducationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MindxTest.Model.Model.Experience", "Experience")
-                        .WithOne("Resume")
-                        .HasForeignKey("MindxTest.Model.Model.Resume", "ExperienceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MindxTest.Model.Model.Information", "Information")
-                        .WithOne("Resume")
-                        .HasForeignKey("MindxTest.Model.Model.Resume", "InformationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MindxTest.Model.Model.Skill", "Skill")
-                        .WithOne("Resume")
-                        .HasForeignKey("MindxTest.Model.Model.Resume", "SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MindxTest.Model.Model.User", "User")
                         .WithMany("Resumes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Education");
-
-                    b.Navigation("Experience");
-
-                    b.Navigation("Information");
-
-                    b.Navigation("Skill");
-
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MindxTest.Model.Model.Education", b =>
-                {
-                    b.Navigation("Resume")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MindxTest.Model.Model.Experience", b =>
-                {
-                    b.Navigation("Resume")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MindxTest.Model.Model.Information", b =>
-                {
-                    b.Navigation("Resume")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MindxTest.Model.Model.Skill", b =>
-                {
-                    b.Navigation("Resume")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("MindxTest.Model.Model.User", b =>

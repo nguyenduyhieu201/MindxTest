@@ -7,6 +7,7 @@ namespace MindxTest.Infrastructure.Infrastructure
 {
     public interface IDbFactory : IDisposable
     {
-        MindxDbContext Init();
     }
 }
+
+// MindxDbContext Init();

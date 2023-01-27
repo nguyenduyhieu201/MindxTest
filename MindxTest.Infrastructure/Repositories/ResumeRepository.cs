@@ -5,6 +5,10 @@ namespace MindxTest.Infrastructure.Repositories
 {
     public class ResumeRepository : RepositoryBase<Resume>, IResumeRepository
     {
+        public ResumeRepository(MindxDbContext context) : base(context)
+        {
+        }
+
         public IEnumerable<Resume> GetResumesWithId(int userId)
         {
             var resumeList = GetAll();

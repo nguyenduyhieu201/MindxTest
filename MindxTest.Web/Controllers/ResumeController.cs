@@ -1,4 +1,8 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MindxTest.Model.Dto.ResumeDto;
+using MindxTest.Model.Dto.UserDto;
 using MindxTest.Model.Model;
 using MindxTest.Service.Service;
 
@@ -18,28 +22,54 @@ public class ResumeController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateResume(Resume resume)
+    [Authorize(Roles = "Admin,User")]
+    public IActionResult CreateResume(ResumeCreateDto resumeCreateDto)
     {
-        _resumeService.CreateResume(resume);
+        var user = GetCurrentUser();
+        _resumeService.CreateResume(resumeCreateDto, user);
         return Ok();
     }
 
     [HttpGet]
-    [Route("{id}")]
-    public Resume ReadResume(object resumeId)
+    [Authorize(Roles = "Admin,User")]
+    public IActionResult ReadResume([FromQuery] int resumeId)
     {
-        return _resumeService.ReadResume(resumeId);
+        return Ok(_resumeService.ReadResume(resumeId));
     }
 
     [HttpPut]
-    public void UpdateResume([FromQuery] object resumeId, Resume resumeUpdated)
+    [Authorize(Roles = "Admin,User")]
+
+    public IActionResult UpdateResume([FromQuery] int resumeId, ResumeUpdateModel resumeUpdateModel)
     {
-        _resumeService.UpdateResume(resumeId, resumeUpdated);
+        _resumeService.UpdateResume(resumeId, resumeUpdateModel);
+        return Ok();
     }
 
     [HttpDelete]
-    public void DeleteResume(object resumeId)
+    [Authorize(Roles = "Admin,User")]
+
+    public void DeleteResume([FromQuery] int resumeId)
     {
         _resumeService.DeleteResume(resumeId);
+    }
+
+    private UserCurrentModel GetCurrentUser()
+    {
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+        if (identity != null)
+        {
+            var userClaims = identity.Claims;
+
+            return new UserCurrentModel
+            {
+                UserId = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Sid)?.Value,
+                Username = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,
+                UserRole = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Role)?.Value == "Admin" ?
+                 "Admin" : "User"
+            };
+        }
+        return null;
     }
 }

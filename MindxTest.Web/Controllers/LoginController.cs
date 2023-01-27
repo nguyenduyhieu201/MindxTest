@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using MindxTest.Model.Dto;
+using MindxTest.Model.Dto.UserDto;
 using MindxTest.Model.Model;
 using MindxTest.Service.Service;
 
@@ -20,7 +16,7 @@ namespace MindxTest.Web.Controllers
         private IConfiguration _config;
         private IUserService _userService;
 
-        public LoginController(IConfiguration config, UserService userService)
+        public LoginController(IConfiguration config, IUserService userService)
         {
             _config = config;
             _userService = userService;
@@ -37,9 +33,9 @@ namespace MindxTest.Web.Controllers
             }
             return NotFound("User not found");
         }
+
         [HttpPost]
         [Route("signup")]
-
         public IActionResult SignUp([FromBody] UserSignUpModel userSignUpModel)
         {
             var user = _userService.SignUp(userSignUpModel);
@@ -51,6 +47,7 @@ namespace MindxTest.Web.Controllers
             var credential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[] {
+                new Claim(ClaimTypes.Sid, user.UserId.ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.Username),
                 new Claim(ClaimTypes.Role, user.UserRole.ToString())
             };
@@ -62,7 +59,12 @@ namespace MindxTest.Web.Controllers
             signingCredentials: credential);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-
     }
 }
+
+// public int UserId { set; get; }
+// public string Username { set; get; } = "";
+// public string Password { set; get; } = "";
+// [EnumDataType(typeof(UserType))]
+// public UserType UserRole { set; get; }
+// public ICollection<Resume> Resumes { set; get; }

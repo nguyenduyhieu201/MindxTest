@@ -1,4 +1,4 @@
-namespace MindxTest.Model.Dto
+namespace MindxTest.Model.Dto.UserDto
 {
     public class UserSignUpModel
     {
